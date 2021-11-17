@@ -7,16 +7,19 @@ from skimage.metrics import structural_similarity as compare_ssim
 from time import sleep
 from beepy import beep
 import typer
+import math
+import pyautogui
 
 app = typer.Typer()
 
 
 @app.command()
-def start(sensitivity: float = 0.998, post_beep_sleep: float = 1.0, inter_frame_sleep: float = 0.5):
+def start(sensitivity: float = 0.95, post_beep_sleep: float = 2.5, inter_frame_sleep: float = 0.0):
     """
     Monitors your screen for small changes while you give your eyes a rest.
     A reasonable value for SENSITIVITY would be 0.98, but make your own tests.
     Small text changes with blue backgrounds require a sensitivity of 0.997.
+    defaut is 0.98
     """
     # monitor info: https://stackoverflow.com/a/31171430
     monitors = get_monitors()
@@ -37,8 +40,12 @@ def start(sensitivity: float = 0.998, post_beep_sleep: float = 1.0, inter_frame_
     # typer.echo(f"monitor: {monitor}")
 
     # general loop: https://stackoverflow.com/a/54246290
-    bounding_box = {'top': 0, 'left': 0,
-                    'width': monitor.width, 'height': monitor.height}
+# trying to center the size
+
+    monitorWidth = int(monitor.width/10)
+    monitorHeight= int(monitor.height/10)
+    bounding_box = {'top': 490, 'left': 870,
+                    'width': monitorWidth, 'height': monitorHeight}
 
     sct = mss()
     try:
@@ -59,6 +66,7 @@ def start(sensitivity: float = 0.998, post_beep_sleep: float = 1.0, inter_frame_
 
             if score < sensitivity:
                 # https://pypi.org/project/beepy/
+#                pyautogui.press("l")
                 beep(sound='coin')
                 sleep(post_beep_sleep)
             else:
@@ -66,3 +74,4 @@ def start(sensitivity: float = 0.998, post_beep_sleep: float = 1.0, inter_frame_
 
     except (KeyboardInterrupt, EOFError):
         print("\nGoodbye!")
+start()
