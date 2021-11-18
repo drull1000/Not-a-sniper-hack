@@ -14,20 +14,19 @@ app = typer.Typer()
 
 
 @app.command()
-def start(sensitivity: float = 0.35, post_beep_sleep: float = 2, inter_frame_sleep: float = 0.0):
+def start(sensitivity: float = 0.50, post_beep_sleep: float = 3, inter_frame_sleep: float = 0.0):
     """
     Monitors your screen for small changes while you give your eyes a rest.
     A reasonable value for SENSITIVITY would be 0.98, but make your own tests.
     defaut is 0.98
     """
-    # monitor info: https://stackoverflow.com/a/31171430
     monitors = get_monitors()
     monitor = monitors[0]
 
     # general loop: https://stackoverflow.com/a/54246290
 
-    monitorWidth = int(monitor.width/25)
-    monitorHeight= int(monitor.height/20)
+    monitorWidth = int(monitor.width/30)
+    monitorHeight= int(monitor.height/30)
     bounding_box = {'top': 520, 'left': 930,
                     'width': monitorWidth, 'height': monitorHeight}
 
@@ -41,7 +40,6 @@ def start(sensitivity: float = 0.35, post_beep_sleep: float = 2, inter_frame_sle
             curr_image = cv2.cvtColor(
                 np.array(sct.grab(bounding_box)), cv2.COLOR_BGR2GRAY)
 
-            # Image difference: https://www.pyimagesearch.com/2017/06/19/image-difference-with-opencv-and-python/
             (score, diff) = compare_ssim(curr_image, prev_image, full=True)
             prev_image = curr_image.copy()
 

@@ -10,8 +10,8 @@ with mss.mss() as sct:
     monitors = get_monitors()
     monitor = monitors[0]
 
-    monitorWidth = int(monitor.width/25)
-    monitorHeight= int(monitor.height/20)
+    monitorWidth = int(monitor.width/30)
+    monitorHeight= int(monitor.height/30)
     bounding_box = {'top': 520, 'left': 930,
                     'width': monitorWidth, 'height': monitorHeight}
 
