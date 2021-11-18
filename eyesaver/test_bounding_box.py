@@ -2,19 +2,20 @@ import mss
 from screeninfo import get_monitors
 import mss.tools
 
-
+# this file is made for checking the screenshot of the area
+# that the program will use to detect the changes.
 with mss.mss() as sct:
     # The screen part to capture
 
     monitors = get_monitors()
     monitor = monitors[0]
-    monitorWidth = int(monitor.width/10)
-    monitorHeight= int(monitor.height/10)
-   #300 100 
-    bounding_box = {'top': 490, 'left': 870,
+
+    monitorWidth = int(monitor.width/25)
+    monitorHeight= int(monitor.height/20)
+    bounding_box = {'top': 520, 'left': 930,
                     'width': monitorWidth, 'height': monitorHeight}
 
-    output = "sct-{top}x{left}_{width}x{height}.png".format(**bounding_box)
+    output = "pic{top}x{left}_{width}x{height}.png".format(**bounding_box)
 
     # Grab the data
     sct_img = sct.grab(bounding_box)
