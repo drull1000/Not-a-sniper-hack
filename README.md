@@ -1,15 +1,9 @@
-# EyeSaver
+# Not a CS go AWP hack 
 
-This CLI-tool will tell you when there is a change happening on the screen by beeping. Now you can close your eyes and give them a rest during those late video-lecture nights, while being sure not to miss a single bullet in the presentation you're watching. 😉
+This repository does not contain python file that can be used as an AWP hack in CS go or any other FPS that has a sniper.
+It simply detects if some pixels in a given part of the screen changes so that it can perform a mouse click.
 
-## Installation
+# Usage
 
-```bash
-pip install eyesaver
-```
-
-## Usage
-
-```bash
-eyesaver --help
-```
+Simply run
+```python3 main.py```

@@ -16,9 +16,7 @@ app = typer.Typer()
 @app.command()
 def start(sensitivity: float = 0.50, post_beep_sleep: float = 3, inter_frame_sleep: float = 0.0):
     """
-    Monitors your screen for small changes while you give your eyes a rest.
-    A reasonable value for SENSITIVITY would be 0.98, but make your own tests.
-    defaut is 0.98
+    A reasonable value for SENSITIVITY would be 0.50, but make your own tests.
     """
     monitors = get_monitors()
     monitor = monitors[0]
